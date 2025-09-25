@@ -5,6 +5,7 @@ import { AppBar, Box, Toolbar, IconButton, Link } from '@mui/material';
 // import AddIcon from '@mui/icons-material/Add';
 // import SearchIcon from '@mui/icons-material/Search';
 // import MoreIcon from '@mui/icons-material/MoreVert';
+import { Link as RouterLink } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import InfoIcon from '@mui/icons-material/Info';
@@ -22,17 +23,17 @@ function ToolBar() {
   return (
     <AppBar position="fixed" color="primary" sx={{ top: 'auto', bottom: 0 }}>
       <Toolbar>
-        <Link href="/" color="inherit" underline="none" sx={{ display: 'flex', alignItems: 'center' }}>
+        <Link component={RouterLink} to="/" color="inherit" underline="none" sx={{ display: 'flex', alignItems: 'center' }}>
           <IconButton color="inherit" aria-label="open drawer">
             <HomeIcon />
           </IconButton>
         </Link>
-        <Link href="/practice" color="inherit" underline="none" sx={{ display: 'flex', alignItems: 'center' }}>
+        <Link component={RouterLink} to="/practice" color="inherit" underline="none" sx={{ display: 'flex', alignItems: 'center' }}>
           <IconButton color="inherit" aria-label="open drawer">
             <SportsEsportsIcon />
           </IconButton>
         </Link>
-        <Link href="/about" color="inherit" underline="none" sx={{ display: 'flex', alignItems: 'center' }}>
+        <Link component={RouterLink} to="/about" color="inherit" underline="none" sx={{ display: 'flex', alignItems: 'center' }}>
           <IconButton color="inherit" aria-label="open drawer">
             <InfoIcon />
           </IconButton>
