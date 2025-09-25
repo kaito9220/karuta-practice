@@ -5,7 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Practice from './pages/Practice';
 import About from './pages/About';
-import NotFound from './pages/NotFound';
+// import NotFound from './pages/NotFound';
 import './App.css'
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
@@ -23,7 +23,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/practice" element={<Practice />} />
           <Route path="/about" element={<About />} />
-          <Route path="*" element={<NotFound />} />
+          {/* <Route path="*" element={<NotFound />} /> */}
         </Routes>
         <ToolBar />
       </ThemeProvider>
