@@ -1,5 +1,5 @@
-import React from 'react'
-import { Router, Route, Routes } from 'react-router-dom';
+// import React from 'react'
+import { Route, Routes } from 'react-router-dom';
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import Home from './pages/Home';
@@ -9,7 +9,7 @@ import NotFound from './pages/NotFound';
 import './App.css'
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
-import ToolBar from './components/ToolBar';
+import ToolBar from './contents/ToolBar';
 import { OriginalTheme } from './styles/OriginalTheme';
 
 function App() {
