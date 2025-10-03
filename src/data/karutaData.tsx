@@ -1,5 +1,5 @@
-type karutaCard = {
-  id: Number;
+export type karutaCard = {
+  id: number;
   kimariji: string;
   kamino_ku: string;
   simono_ku: string;
@@ -264,7 +264,7 @@ export const karutaCards: karutaCard[] = [
     kimariji: "しら",
     kamino_ku: "白露に 風の吹きしく 秋の野は",
     simono_ku: "つらぬきとめぬ 玉ぞ散りける",
-    torifuda: "つらぬきと\nめぬたまそ\mちりける",
+    torifuda: "つらぬきと\nめぬたまそ\nちりける",
   },
   {
     id: 38,

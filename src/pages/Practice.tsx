@@ -1,30 +1,48 @@
-import React from 'react';
+// import React from 'react';
+import { useState, useEffect } from 'react';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import '../styles/Practice.css';
-import { karutaCards } from '../data/karutaData.tsx';
+import { karutaCards, type karutaCard } from '../data/karutaData.tsx';
+// import { Container } from '@mui/material';
 
 function Practice() {
+  // 選択肢の数
+  // const [numberOfCards, setNumberOfCards] = useState(4);
+  const numberOfCards = 4;
+  const [selectedCards, setSelectedCards] = useState<karutaCard[]>([]);
+  // 正解のカードを選ぶ
+  const [karutaCard, setKarutaCard] = useState<karutaCard | null>(null);
+  // あっているかどうかのフラグ
   // const [isCorrect, setIsCorrect] = useState(false);
   // const [value, setValue] = useState('');
   // const [currentKarutas, setCurrentKarutas] = useState();
 
-  // karutaCardsから必要な枚数被りがないようにランダムに選ぶ
-  const numberOfCards = 4; // 表示する枚数
-  const shuffledCards = karutaCards.sort(() => 0.5 - Math.random());
-  const selectedCards = shuffledCards.slice(0, numberOfCards);
+  const generateNewQuestion = () => {
+    const shuffled = [...karutaCards].sort(() => 0.5 - Math.random());
 
-  // 上の句をランダムに選ぶ
-  const randomIndex = Math.floor(Math.random() * selectedCards.length);
-  const karutaCard = selectedCards[randomIndex];
+    const newSelectedCards = shuffled.slice(0, numberOfCards);
+    setSelectedCards(newSelectedCards);
+
+    const newCorrectCard = newSelectedCards[Math.floor(Math.random() * numberOfCards)];
+    setKarutaCard(newCorrectCard);
+  }
+
+  // 最初に一度だけかるた問題を生成
+  useEffect(() => {
+    generateNewQuestion();
+  }, []);
 
   // クリックイベントのハンドラ
-  const handleKarutaClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    const clickedText = event.currentTarget.textContent;
-    if (clickedText?.includes(karutaCard.torifuda)) {
+  const handleKarutaClick = (clickedCard: karutaCard) => {
+    if(!karutaCard) {
+      return;
+    }
+
+    if (clickedCard.id === karutaCard.id) {
       // setIsCorrect(true);
       alert(`正解！\n決まり字は:${karutaCard.kimariji}`);
     } else {
@@ -32,9 +50,25 @@ function Practice() {
       alert(`不正解！`);
     }
   };
+
+  const handleShuffleClick = () => {
+    generateNewQuestion();
+  };
+
+  if(!karutaCard) {
+    return <Typography>読み込み中...</Typography>;
+  }
   
   return (
-    <>
+    <Box sx={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexDirection: 'column',
+    }}>
+      <Button sx={{ m:2, border: 4, borderColor: 'primary.main' }} onClick={handleShuffleClick}>
+        シャッフル
+      </Button>
       <Paper sx={{ 
         p: 2, 
         // textAlign: 'center', 
@@ -46,62 +80,51 @@ function Practice() {
         <Typography variant="h5" component="h2" gutterBottom>
           上の句
         </Typography>
-        <Typography variant="body1" gutterBottom>
+        <Typography variant="h4" component="p" sx={{ textAlign: 'center' }}>
           {karutaCard.kamino_ku}
         </Typography>
       </Paper>
-      <Box 
+      <Box
         sx={{
-          // width: '500',
-          flexGrow: 1,
-          justifyContent: 'center',
-          alignItems: 'center'
+          width: '100%',
+          maxWidth: '600px',
         }}
         >
-        <Grid container spacing={1} 
+        <Grid container spacing={3} 
         // sx={{ justifyContent: 'center', alignItems: 'center' }}
         >
-          <Grid size={3}>
-            <Box 
+        {selectedCards.map((card) => (
+          <Grid size={{ xs:6, sm: 12}} key={card.id.toString()}>
+            <Button 
+              variant="contained" 
+              onClick={() => handleKarutaClick(card)} 
+              fullWidth
               sx={{
-                width: '500%',
-                p: 2,
-                borderRadius: 2,
-                bgcolor: 'background.default',
-                display: 'grid',
-                gridTemplateColumns: { md: '1fr 1fr' },
-                gap: 2,
+                p: 2, 
+                height: '100%',
+                textAlign: 'center', 
+                color: 'text.primary', 
+                backgroundColor: 'background.paper',
+                border: 4, 
+                borderColor: 'secondary.main', 
+                display: 'flex',
+                alignItem: 'center',
+                justifyContent: 'center',
               }}
-              >
-              {selectedCards.map((card) => (
-                <Button 
-                  variant="contained" 
-                  onClick={handleKarutaClick} 
-                  key={card.id.toString()} 
-                  sx={{
-                    p: 2, 
-                    textAlign: 'center', 
-                    color: 'text.primary', 
-                    backgroundColor: 'background.paper',
-                    border: 4, 
-                    borderColor: 'secondary.main' 
-                  }}
+            >
+                {/* <Typography sx={{ whiteSpace: 'pre-wrap' }}>{card.kamino_ku}</Typography> */}
+                <Typography 
+                  className='ku'
+                  sx={{ whiteSpace: 'pre-wrap' }}
                 >
-                  <section className='ku'>
-                    {/* <Typography sx={{ whiteSpace: 'pre-wrap' }}>{card.kamino_ku}</Typography> */}
-                    <Typography 
-                      sx={{ whiteSpace: 'pre-wrap' }}
-                    >
-                      {card.torifuda}
-                    </Typography>
-                  </section>
-                </Button>
-              ))}
-            </Box>
+                  {card.torifuda}
+                </Typography>
+            </Button>
           </Grid>
+        ))}
         </Grid>
       </Box>
-    </>
+    </Box>
   );
 }
 
