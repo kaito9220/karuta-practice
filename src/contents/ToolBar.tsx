@@ -9,6 +9,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import InfoIcon from '@mui/icons-material/Info';
+import SportsMmaIcon from '@mui/icons-material/SportsMma';
 
 // const StyledFab = styled(Fab)({
 //   position: 'absolute',
@@ -31,6 +32,12 @@ function ToolBar() {
         <Link component={RouterLink} to="/practice" color="inherit" underline="none" sx={{ display: 'flex', alignItems: 'center' }}>
           <IconButton color="inherit" aria-label="open drawer">
             <SportsEsportsIcon />
+          </IconButton>
+        </Link>
+        
+        <Link component={RouterLink} to="/game" color="inherit" underline="none" sx={{ display: 'flex', alignItems: 'center' }}>
+          <IconButton color="inherit" aria-label="open drawer">
+            <SportsMmaIcon />
           </IconButton>
         </Link>
         <Link component={RouterLink} to="/about" color="inherit" underline="none" sx={{ display: 'flex', alignItems: 'center' }}>
