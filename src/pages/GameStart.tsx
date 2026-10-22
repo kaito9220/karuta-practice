@@ -1,7 +1,7 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { Box, Button, Grid, Paper, Link } from '@mui/material';
-import { Link as routerLink } from 'react-router-dom';
+import { Box } from '@mui/material';
+// import { Link as routerLink } from 'react-router-dom';
 
 // const dropzoneStyles = {
 //   border: '2px dashed #cccccc',
