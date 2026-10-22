@@ -67,9 +67,3 @@ npm run build    # プロダクションビルド
 npm run preview  # ビルド結果のプレビュー
 npm run lint     # ESLintによる静的解析
 ```
-
----
-
-## ライセンス
-
-このプロジェクトはプライベートリポジトリです。
