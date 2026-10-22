@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 // import viteLogo from '/vite.svg'
 import Home from './pages/Home';
 import Practice from './pages/Practice';
+import GameStart from './pages/GameStart';
 import Game from './pages/Game';
 import About from './pages/About';
 // import NotFound from './pages/NotFound';
@@ -23,6 +24,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/practice" element={<Practice />} />
+          <Route path="/gameStart" element={<GameStart />} />
           <Route path="/game" element={<Game />}/>
           <Route path="/about" element={<About />} />
           {/* <Route path="*" element={<NotFound />} /> */}

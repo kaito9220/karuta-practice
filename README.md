@@ -1,69 +1,75 @@
-# React + TypeScript + Vite
+# 百人一首かるた練習アプリ
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+百人一首の暗記・練習をサポートするWebアプリです。  
+上の句を見て対応する取り札（下の句）を選ぶ練習モードと、実際のかるた盤面を再現したゲームモードを搭載しています。
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 機能
 
-## Expanding the ESLint configuration
+| 機能 | 説明 |
+|------|------|
+| **練習モード** | 上の句が表示され、4枚の取り札から正解を選ぶクイズ形式。正解時は決まり字も確認できます。 |
+| **ゲームモード** | 百人一首の盤面を再現。24枚の札を自陣・敵陣に12枚ずつランダムに配置します。 |
+| **ゲーム開始** | ファイルのドラッグ＆ドロップでゲームデータを読み込めます（開発中）。 |
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 技術スタック
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **フレームワーク**: [React 19](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+- **ビルドツール**: [Vite](https://vitejs.dev/)
+- **UIライブラリ**: [Material UI (MUI) v7](https://mui.com/)
+- **ルーティング**: [React Router v7](https://reactrouter.com/)
+- **ファイル操作**: [react-dropzone](https://react-dropzone.js.org/)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## 画面構成
+
+```
+/           ホーム画面
+/practice   練習モード（上の句クイズ）
+/gameStart  ゲーム開始（ファイルアップロード）
+/game       ゲーム画面（かるた盤面）
+/about      このアプリについて
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## セットアップ・起動方法
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 必要環境
+
+- Node.js 18 以上
+- npm
+
+### インストール
+
+```bash
+git clone https://github.com/kaito9220/karuta-practice.git
+cd karuta-practice
+npm install
 ```
+
+### 開発サーバーの起動
+
+```bash
+npm run dev
+```
+
+ブラウザで `http://localhost:5173` を開いてください。
+
+### その他のコマンド
+
+```bash
+npm run build    # プロダクションビルド
+npm run preview  # ビルド結果のプレビュー
+npm run lint     # ESLintによる静的解析
+```
+
+---
+
+## ライセンス
+
+このプロジェクトはプライベートリポジトリです。

@@ -35,7 +35,7 @@ function ToolBar() {
           </IconButton>
         </Link>
         
-        <Link component={RouterLink} to="/game" color="inherit" underline="none" sx={{ display: 'flex', alignItems: 'center' }}>
+        <Link component={RouterLink} to="/gameStart" color="inherit" underline="none" sx={{ display: 'flex', alignItems: 'center' }}>
           <IconButton color="inherit" aria-label="open drawer">
             <SportsMmaIcon />
           </IconButton>
